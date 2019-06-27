@@ -7,3 +7,11 @@
 - SAFR from RealNetworks is the most accurate high-performance facial recognition algorithm for live video as tested by NIST.
 
 [Nist November](https://www.nist.gov/sites/default/files/documents/2019/01/29/frvt_report_2019_01_29.pdf)
+
+
+## [A Face Recognition System Based on Eigenfaces Method](https://reader.elsevier.com/reader/sd/pii/S2212017312000242?token=55E4E396A177255FFC34220CFBCA370170540FC2334CF574CECFF224B4EF771171811F6D28D1019EF7B4A9309DCBC3F8)
+
+## [A Performance Comparison of Loss Functions for Deep Face Recognition](https://arxiv.org/pdf/1901.05903.pdf)
+
+## [Face recognition accuracy of forensic examiners, superrecognizers, and face recognition algorithms](https://www.pnas.org/content/pnas/115/24/6171.full.pdf)
+
