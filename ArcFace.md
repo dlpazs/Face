@@ -78,18 +78,29 @@
 ## CosFace Loss
 
 - Uses a large Margin Cosine Loss (LMCL) to maximize inter-class variance and minimise intra-class variance and overcome shortcomings of SphereFace
-- it does this by defining the decision margin in cosine space, which SphereFace's A-softmax which defines in angular space, it starts by reformulating the softmax loss by L2 normalizing the features and weights to remove radial variants this addresses A-softmax's first issue of producing different margins for different classes dependent on the value of $\theta$
-- 
+- it does this by defining the decision margin in cosine space, which SphereFace's A-softmax which defines it in angular space, it starts by reformulating the softmax loss by L2 normalizing the features and weights to remove radial variants this addresses A-softmax's first issue of producing different margins for different classes dependent which is the result of depending on the value of $\theta$
+- as with A-softmax a margin value is added to increase the inter-class distance and reduce intra-class distance 
+- CosFace's loss function maximizes cos theta 1 and minimizes cos theta 2 for C1 to perform the large margin classification
+- this is superior to A-softmax decision boundary who's margin is not consistent for all theta values making the decision boundaries hard to optimize
 
 ## Additive Angular Margin Loss
 
+- ArcFace further improves discriminative power by adding additive angular margin 
+- unlike CosFace which applies an angular margin directly to the target logit, ArcFace applies the inverse of the angle using the arc-cos function before using the cosine function to get back the target logit, then it re-scales the logit by a fixed feature norm and the rest is the same as the softmax loss function
 - ArcFace uses an angular margin similar to SphereFace and CosFace to maximize face class separability
 - it utilises the arc-cosine function to calculate the angle between the current feature and the target weight
 - afterwards, it adds an additive angular margin to the target angle and we get the target logit back again by cosine function 
 - then it re-scales all logits by a fixed feature norm, and the subsequent steps are exactly the same as in the softmax loss
+
+
 - start with a normal softmax loss function, which doesn't optimise feature embedding to maximise face class separability
 - the bias is fixed to 0
-- the logit is transformed as 
+- the logit is transformed as $W^{T}_{j} x_i = ||W_j||||x_i|| cos \theta_j$, where $\theta_j$ is the angle between weight $W_j$ and the feature $x_i$
+- the individual weight is fixed to ||W_j||=1$ by $l_2$, as well as the embedding feature which is fixed to $||x_i||$ by $l_2$ normalisation and re-scaled to $s$.
+- the normalisation step on features and weights makes the predictions only depend on the angle between the feature and the weight
+
+- the embedding features are distributed around each feature centre on the hypersphere, we add an additive angular margin penalty $m$ between $x_i$ and $W_{y_i} to simultaneously enhance intra-class compactness and inter-class discrepancy
+- Since the proposed additive angular margin penalty is equal to the geodesic distance margin penalty in the normalised hypersphere, the method is called ArcFace
 
 # ArcFace the paper
 
