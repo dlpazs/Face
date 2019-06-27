@@ -173,6 +173,43 @@
 
 
 
+# ArcFace continued
+
+[Article](https://www.groundai.com/project/arcface-additive-angular-margin-loss-for-deep-face-recognition/)
+
+- Arcface $cos(\theta + margin)$ to maximise the decision boundary in angular (arc) space is based on L2 normalised weights
+and features. Compred to multiplicative angular margin $cos(m\theta)$ and additive cosine margin $cos\theta-m$ Arcface has more discriminative features
+
+![alt text](https://www.groundai.com/media/arxiv_projects/154532/fig/arcFace.png.750x0_q75_crop.png)
+
+- Blue and Green points represent embedding features from 2 different classes. **Arcface can directly impose angular (arc) margin between classes**. The angular margin of ArcFace corresponds to arc margin (geodesic distance) on the hypersphere surface.
+
+- Face recognition approaches by DCNN embedding differ along 3 attributes
+- Firstly, training data employed. VGG-Face, VGG2-Face, CAISA-WebFace, UMDFaces, MS-celeb-1M, MegaFace range from thousands to half million. MS-Celeb-1M and MegaFace have significant number of identities, they suffer from annotation noises and long-tail distributions. 
+- From the latest FRVT, Yitu a chinese start-up ranks first based on their 1.8billion face image training data. 
+- Secondly, network architecture and settings. 
+- Thirdly, design of loss function
+
+1) Euclidean margin based loss
+
+- a softmax classification layer is trained over a set of known identities
+- the FV is taken from an intermediate layer of the net and is used to generalise recognition beyond the set of identities used in training
+- Centre loss and marginal loss add extra penalty to compress intra-variance or enlarge inter-distance, but all combine softmax to train
+- classification based systems suffer from massive GPU memory consumption when the identity number increases to million level and prefer balanced training data for each identity
+- contrastive loss and triplet loss utilise pair training strategy
+- contrastive loss consists of positive pairs and negative pairs
+- the gradients of the loss pull together positive pairs and push apart negative pairs
+- triplet losss minimises distance between an anchor and positive and maximises the distance with the anchor and negative
+- the training procedure for both is tricky
+
+2) Angular and cosine margin based loss
+
+- Liu proposed a large margin softmax (L-softmax) by adding multiplicative angular constraints to each identity to improve feature discrimination
+- SphereFace $cos(m\theta)$ applies L-softmax to deep face recognition with weights normalisation. Due to the non-monotonicity of the cosine function, a piece-wise function is applied in SphereFace to guarantee monotonicity
+- During training SphereFace softmax loss is combined to facilitate and ensure the convergence
+- to overcome the optimisation difficulty of SphereFace..
+
+
 
 
 
