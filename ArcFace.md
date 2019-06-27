@@ -91,13 +91,6 @@
 - the bias is fixed to 0
 - the logit is transformed as 
 
-
-# Medium [here](https://medium.com/1-minute-papers/arcface-additive-angular-margin-loss-for-deep-face-recognition-d02297605f8d)
-
-- the goal is to maximize face class separability by introducing a new loss that is highly discriminative to features for face recognition
-- Softmax loss has some drawbacks, one is that it does not explicity optimize the feature embedding to enforce higher similarity for intra-class samples and diversity for inter-class samples, which has performance loss for face recognition under large intra-class appearance variations like pose variations and age gaps
-- Arcface is easy to implement and does not require much extra computational overhead
-
 # ArcFace the paper
 
 - One of the key challenges in feature learning using DCNN's for large scale face recognition is designing the appropriate loss function that enhances discriminative power
@@ -107,7 +100,7 @@
 - This paper proposes Additive Angular Margin Loss (ArcFace) to obtain highly discriminative features 
 - has a clear geometric interpretation due to the exact correspondence to the geodesic distance
 ***
-- **NB**: geodesic distance : the distance between two vertices in a graph is the number of edges in a shortest path also called graph geodesic connecting them. This is also know as geodesic distance. A geodesic line is thus the shortest path between two points on a curved surface. They are the analogue of a straight line on a plan surface or whose sectioning plane at all points along the line remains normal to the surface. It is a way of showing distance on an ellipsoid whilst that distance is being projected onto a flat surface. [alt text](https://qph.fs.quoracdn.net/main-qimg-5b21d634622cc41141207b8325f13843) The image shows a planar distance in orange and a geodesic distance of that planar distance in blue. So it can be thought of as a generalization of a straight line to curved surfaces. 
+- **NB**: geodesic distance : the distance between two vertices in a graph is the number of edges in a shortest path also called graph geodesic connecting them. This is also know as geodesic distance. A geodesic line is thus the shortest path between two points on a curved surface. They are the analogue of a straight line on a plan surface or whose sectioning plane at all points along the line remains normal to the surface. It is a way of showing distance on an ellipsoid whilst that distance is being projected onto a flat surface. ![alt text](https://qph.fs.quoracdn.net/main-qimg-5b21d634622cc41141207b8325f13843) The image shows a planar distance in orange and a geodesic distance of that planar distance in blue. So it can be thought of as a generalization of a straight line to curved surfaces. 
 ***
 - based on centre and feature normalisation, all identities are distributed on a hypersphere
 - to enhance intra-class compactness and inter-class discrepancy, they consider four kinds of Geodesic distance constraints; (A) Margin-Loss : insert a geodesic distance margin between the sample and centres. (B) Intra-loss : decrease geodesic distance between the sample and corresponding centre. (C) Inter-loss : increase geodesic distance between different centres. (D) Triplet-loss : insert a geodesic distance margin between triplet samples. 
@@ -141,7 +134,12 @@
 - the learned embedding features are thus distributed on a hypersphere with a radius of $s$. 
 - as embedding features are distributed around each feature centre on the hypersphere, we add an additive angular margin pentaly $m$ between $x_i$ and $W_{y}{i}$ to simultaneously enhance the intra-class compactness and inter-class discrepancy
 - since the proposed additive angular margin penalty is equal to the geodesic distance margin penalty in the normalised hypersphere they name their method ArcFace
-- (find the image of the difference between softmax and arcface loss)
+
+
+![alt text](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRP5jO_0qhIVeLu47xzFKXPyNZamQhsP7D6FtIBm5OjDoNwTLqxJQ)
+
+![alt text](https://4.bp.blogspot.com/-vPyIn-UXH1I/WxaaNfZ0FWI/AAAAAAAAwkI/fjxi9IVfImoy81sth-4FHYMv2DZ0qCasgCEwYBhgL/s1600/1.PNG)
+
 - the softmax loss provides roughly separable feature embedding but produces noticeable ambiguity in decision boundaries, while the proposed ArcFace loss can enforce more evident gap between the nearest classes
 - Based on feature normalisation, all face features are pushed to the arc space with a fixed radius $s$. The geodesic distance gap between closest classes becomes evident as the additive angular margin penalty is incorporated.
 
@@ -161,7 +159,6 @@
 - for data preprocessing they generate normalised face crops 112x112 by utilising five facial points/landmarks
 - for the embedding network they use CNN architectures ResNet50 and ResNet100, Batc Norm after last conv layer, BN-Dropout-FC-BN structure to get final 512-D embedding
 - set feature scale $s$ to 64 and angular margin $m$ at 0.5
-- 
 
 
 
