@@ -128,6 +128,39 @@
 - This paper proposes ArcFace to further improve discriminative power
 - the dot product between the DCNN feature and last fully connected layer is equal to the cosine distance after feature and weight normalisation
 - they utilise the arc-cosine function to calculate the angle between the current feature and the target weight
+- then they add an additive angular margin to the target angle, and get the target logit back again by the cosine function
+- then they re-scale all logits by a fixed feature norm and the subsequent steps are exactly the same as in the softmax loss
+- **Engaging**. ArcFace optimises the geodesic distance margin by virtue of the exact correspondence between the angle and arc in the normalisd hypersphere. 
+- Achieves SOTA
+- **Easy.** Only needs a few lines of code and easy to implement in Pytorch/TF/MxNet. It converge well and doesn't need other loss functions
+- **Efficient**. Adds only negligible computational complexity at training
+- Approach : bias is set to 0. The logit i.e. weights transpose dotted with x, is transformed into $||W_j||||x_i||cos\theta_j$, where $\theta_j$ is the angle between weight $W_j$ and the feature $x_i$
+- they then fix the individual weight $||W_j|| = 1$ by $l_2$ normalisation
+- they also fix the embedding feature $||x_i||$ by $l_2$ normalisation and re-scale it to $s$.
+- the normalisation of features and weights makes predictions only depend on the angle between the feature and the weight
+- the learned embedding features are thus distributed on a hypersphere with a radius of $s$. 
+- as embedding features are distributed around each feature centre on the hypersphere, we add an additive angular margin pentaly $m$ between $x_i$ and $W_{y}{i}$ to simultaneously enhance the intra-class compactness and inter-class discrepancy
+- since the proposed additive angular margin penalty is equal to the geodesic distance margin penalty in the normalised hypersphere they name their method ArcFace
+- (find the image of the difference between softmax and arcface loss)
+- the softmax loss provides roughly separable feature embedding but produces noticeable ambiguity in decision boundaries, while the proposed ArcFace loss can enforce more evident gap between the nearest classes
+- Based on feature normalisation, all face features are pushed to the arc space with a fixed radius $s$. The geodesic distance gap between closest classes becomes evident as the additive angular margin penalty is incorporated.
+
+### Comparison with SphereFace and CosFace
+
+- in all 3, 3 different kinds of margin are proposed e.g. multiplicative angular margin $m_1$, additive angular margin $m_2$ and additive cosine margin $m_3$
+- from a numerical analysis point of view, different margin penalties, no matter add on the angle or cosine space, all enforce intra-class compactness and inter-class diversity by penalising the target logit
+- the additive angular margin has a better geometric attribute as the angular margin has the exact correspondence to the geodesic distance
+- They compare decision boundaries. ArcFace has a constant linear angular margin unlike SphereFace and CosFace only have a nonlinear angular margin. 
+- **Intra-loss** is designed to improve intra-class compactness by decreasing the angle/arc between the sample and ground truth centre
+- **Inter-loss* tries to enhance inter-class discrepancy by increasing the angle/arc between different centres
+- Triplet-loss tries to enlarge the angle/arc margin between triplet samples
+
+### Experiementation & Implementation Details
+
+- first to employ ethnic specific annotators
+- for data preprocessing they generate normalised face crops 112x112 by utilising five facial points/landmarks
+- for the embedding network they use CNN architectures ResNet50 and ResNet100, Batc Norm after last conv layer, BN-Dropout-FC-BN structure to get final 512-D embedding
+- set feature scale $s$ to 64 and angular margin $m$ at 0.5
 - 
 
 
