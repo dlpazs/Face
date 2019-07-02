@@ -161,5 +161,142 @@ as many IDs as possible in the training set
 
 ### A. Evolution of Discriminative Loss Functions
 
+- Inheriting from the object classification network such as
+AlexNet, the initial Deepface [195] and DeepID [191] adopted
+cross-entropy based softmax loss for feature learning. After
+that, people realized **that the softmax loss is not sufficient by
+itself to learn feature with large margin**, and more researchers
+began to explore discriminative loss functions for enhanced
+generalization ability.
 
+- Euclidean-distance-based loss played an important role; In
+2017, angular/cosine-margin-based loss as well as feature and
+weight normalization became popular. It should be noted that,
+although some loss functions share similar basic idea, the new
+one is usually designed to facilitate the training procedure by
+easier parameter or sample selection.
+
+- 1) Euclidean-distance-based Loss : Euclidean-distancebased loss is a metric learning method[230], [216] that embeds
+images into Euclidean space and compresses intra-variance
+and enlarges inter-variance. The contrastive loss and the triplet
+loss are the commonly used loss functions. The contrastive loss
+[222], [187], [188], [192], [243] requires face image pairs and
+then pulls together positive pairs and pushes apart negative
+pairs.
+
+- y. DeepID2 [222] combined the
+face identification (softmax) and verification (contrastive loss)
+supervisory signals to learn a discriminative representation,
+and joint Bayesian (JB) was applied to obtain a robust embedding space
+
+- However, the main problem with the contrastive loss is that
+the margin parameters are often difficult to choo
+
+- Contrary to contrastive loss that considers the absolute
+distances of the matching pairs and non-matching pairs, triplet
+loss considers the relative difference of the distances between
+them. . It requires the face triplets, and then it minimizes
+the distance between an anchor and a positive sample of the
+same identity and maximizes the distance between the anchor
+and a negative sample of a different identity. FaceNet uses it. 
+
+- However, the contrastive loss and triplet loss occasionally
+encounter training instability due to the selection of effective
+training samples
+
+![alt text](https://ai2-s2-public.s3.amazonaws.com/figures/2017-08-08/21117380118ddce47b3c515c5228372c513e61ba/6-Figure5-1.png)
+Fig. 5. The development of loss functions. It marks the beginning of deep FR that Deepface [195] and DeepID [191] were introduced in 2014. After
+that, Euclidean-distance-based loss always played the important role in loss function, such as contractive loss, triplet loss and center loss. In 2016 and 2017,
+L-softmax [126] and A-softmax [125] further promoted the development of the large-margin feature learning. In 2017, feature and weight normalization also
+begun to show excellent performance, which leads to the study on variations of softmax. Red, green, blue and yellow rectangles represent deep methods with
+softmax, Euclidean-distance-based loss, angular/cosine-margin-based loss and variations of softmax, respectively.
+
+- Center loss [218] and its variant [261], [43], [228]
+is a good choice to compresses intra-variance. In [218], the
+center loss learned a center for each class and penalized the
+distances between the deep features and their corresponding
+class centers.
+
+- To handle the long-tailed data, A range loss [261] is used
+to minimize k greatest range’s harmonic mean values in one
+class and maximize the shortest inter-class distance within one
+batch, while Wu et al. [228] proposed a center-invariant loss
+that penalizes the difference between each center of classes.
+Deng et al. [43] selected the farthest intra-class samples and
+the nearest inter-class samples to compute a margin loss.
+However, the center loss and its variant suffer from massive
+GPU memory consumption on the classification layer, and
+prefer balanced and sufficient training data for each identity
+
+- 2) Angular/cosine-margin-based Loss : 
+Angular/cosine-marginbased loss. make learned features potentially separable with a larger angular/cosine distance. Liu et al. [126] reformulated the original
+softmax loss into a large-margin softmax (L-Softmax) loss
+
+- Due to L-Softmax has difficulty converging, softmax loss
+is always combined to facilitate and ensure the convergence,
+and the weight is controlled by a dynamic hyper-parameter λ.
+
+- Based on LSoftmax, A-Softmax loss [125] further normalized the weight
+W by its L2 norm (kWk = 1) such that the normalized
+vector will lie on a hypersphere, and then the discriminative
+face features can be learned on a hypersphere manifold with
+an angular margin  introduced a
+deep hyperspherical convolution network (SphereNet) that
+adopts hyperspherical convolution as its basic convolution
+operator and that is supervised by angular-margin-based loss.
+To overcome the optimization difficulty of L-Softmax and ASoftmax, which incorporate the angular margin in a multiplicative manner, ArcFace [42] and CosineFace [205], AMS
+loss [207] respectively introduced an additive angular/cosine
+margin cos(θ +m) and cosθ −m. They are extremely easy to
+implement without tricky hyper-parameters λ, and are more
+clear and able to converge without the softmax supervision.
+
+-  Compared to Euclidean-distancebased loss, angular/cosine-margin-based loss explicitly adds
+discriminative constraints on a hypershpere manifold, which
+intrinsically matches the prior that human face lies on a
+manifold; but Wang et al. [204] showed that angular/cosinemargin-based loss, which used to achieve a better result on a
+clean dataset, is vulnerable to noise and becomes worse than
+Center loss and Softmax in the high-noise region.
+
+- 3) Softmax Loss and its Variations : In 2017, in addition
+to reformulating softmax loss into an angular/cosine-marginbased loss as mentioned above, there are also many works
+focusing on modifying it in detail. Normalization of feature
+or weight in softmax loss is one of the strategies
+
+- Feature and weight normalization are just effective tricks and should be implemented
+with other loss functions.
+
+- the loss functions normalized
+the weights only and trained with angular/cosine margin to
+make the learned features be discriminative.
+
+-  the loss functions normalized
+the weights only and trained with angular/cosine margin to
+make the learned features be discriminative.
+
+- Based on the observation of [148] that the L2-norm of features
+learned using the softmax loss is informative of the quality of
+the face, L2-softmax [157] enforced all the features to have
+the same L2-norm by feature normalization such that similar
+attention is given to good quality frontal faces and blurry faces
+with extreme pose.
+
+- Ring loss [272] encouraged
+norm of samples being value R (a learned parameter) rather
+8
+than explicit enforcing through a hard normalization operation.
+Moreover, normalizing both features and weights [206], [130],
+[75] has become a common strategy in softmax. In [206],
+Wang et al. explained the necessity of this normalization
+operation from both analytic and geometric perspectives.
+
+- After
+normalizing features and weights, CoCo loss [130] optimized
+the cosine distance among data features, and [75] used the von
+Mises-Fisher (vMF) mixture model as the theoretical basis to
+develop a novel vMF mixture loss and its corresponding vMF
+deep features.
+
+### B. Evolution of Network Architecture
+
+- 1) Backbone Network : Mainstream architectures.
 
