@@ -59,17 +59,13 @@ facial landmark detector, the faces are aligned to normalized
 canonical coordinates. Third, the FR module is implemented
 with these aligned face images. 
 
--  FR can be categorized as face verification and
-face identification. In either scenario, a set of known subjects is
-initially enrolled in the system (the gallery), and during testing,
-a new subject (the probe) is presented. Face verification
-computes one-to-one similarity between the gallery and probe
-to determine whether the two images are of the same subject,
-whereas face identification computes one-to-many similarity
-to determine the specific identity of a probe face. When the
-probe appears in the gallery identities, this is referred to as
-**closed-set identification**; when the probes include those who
-are not in the gallery, this is **open-set identification**
+Face recognition can be categorized as face verification and face identification. In either scneario, a tet of known subjects enrolled into the system (the gallery), and during testing, a new subject (probe) is presented.
+
+- Face Verification : computes one-to-one similarity between the gallery and probe to determine if two images are the same. 
+- Face Identification : computes one-to-many similarity to determine the specific identity of a probe face. 
+- **Closed-set identification** : when the probe appears in the gallery identities, this is referred to as a closed-set identification.
+- **Open-set identification** : when the probes include those who are not in the gallery this is open-set.
+
 
 ## B. Components of Face Recognition
 
