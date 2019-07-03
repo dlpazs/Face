@@ -300,3 +300,44 @@ deep features.
 
 - 1) Backbone Network : Mainstream architectures.
 
+### C. Face Matching by deep features
+
+- the cosine distance and L2 are generally employed during testing to measure similarity, then threshold comparison and the nearest neighbour classifier are used to make decision for verification and identification. Here are other common methods:
+- 1) Face verification : Metric learning, which aims to find a new metric to make two classes more separable. E.g. JB model does the log of probability of x1,x2 (two faces) belonging to the same identity over the probability of x1, x2 (two faces) belong to different identities. 
+
+- 2) Face identification : after computing cosine, a heuristic voting strategy at the similarity score evel 
+
+- When the distribution of training and test data are the same, the face matching methods are effective. Transfer learning has been introduced for deep FR which utilizes data in relevant source domains (training) to execute in target domain (test)
+
+## IV. Face Processing for Training and Recognition
+
+### A. One-to-Many Augmentation
+
+- can be used to augment not training but the gallery of test data
+- **Data augmentation** 
+- **3D Model**
+
+## V. Face Databases and Evaluation Protocols
+
+- The development of face databases leads the direction of FR research
+
+### A. Large-scale training data sets and their label noise
+
+- CASIA-Webface : first widely-used public training dataset 0.5M images of 10k celebrities
+- MS-Celeb-1M, VGGface2, Megaface
+- **Depth v.s. breath** VGGface2 provides large-scale training dataset of depth, which have limited number of subjects but many images. The depth of the dataset enforces the trained model to address a wide range intra-class variations such as lighting, pose and age
+- In contrast, MS1M and Megaface offers large-scale training datasets of breadth, which have many subjects but limited images for each subject.
+- **Long tail distribution** 
+- **Data engineering** 
+- **Data bias** exists in most databases. Most datasets are collected from websites and consist of celebrities on formal occasions, smiling, make-up, young. They are largely different from databases captured in real life. Such discrepancies cause a poor performance in applications when directly adopting the pre-trained models. 
+- Another serious data bias is the uneven distributions of demographic cohors e.g. race/ethnicity, gender, age. 
+- Wang et al. proposed a Racial Faces in the Wild database whose testing can be used to fairly evaluate and compare the recognition ability of the algorithm on different races and training set can enable algorithms to reduce racial bias. [link](http://www.whdeng.cn/RFW/index.html) 
+- after baselining commercial APIs and algorithms they show that FR systems work unequally well for different races, the maxmimum difference in error rate between the best and worst groups is 12%. 
+
+### B. Training protocols
+
+- 
+
+
+
+
