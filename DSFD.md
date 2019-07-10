@@ -21,4 +21,14 @@ to provide better initialization for the regressor
 * Feature Enhance Module to enhance the discriminability and robustness of features, which combines the advantages of the FPN in PyramidBox and Receptive Field Block (RFB) in RFBNet
 * Progressive Anchor Loss motivated by hierarchical loss and pyramid anchor that uses progressive anchor sizes for different levels. They assign smaller anchor sizes in the first shot and use larger sizes in the second shot
 * Improved Anchor Matching (IAM), which integrates anchor partition strategy and anchor-based data augmentation to match anchors and ground truth faces providing better initialization for the regressor
-* 
+* Early approaches of feature learning focused on hand-crafted features like Harr-like features, edge oriented historgrams
+* These were superseded by CNN's like Cascaded-CNN and MTCNN adopting CNN's as a sliding window detector on image pyramid to build feature pyramids.
+* Using an image pyramid is slow and memory inefficient, most two stage detectors extract features on single scale
+* R-CNN obtains region proposals by selective search then forwards each normalized image region through a CNN to classify
+* Faster R-CNN, R-FCN employ region proposal network (RPN) to generate initial region proposals
+* ROI-pooling is applied to extract features from each region
+* Recent research indicates multi-scale features perform better for tiny objects
+* SSD, SSH, MS-CNN predict boxes on multiple layers of feature hierarchy
+* FPN-based methods (a top-down architecture, integrate high-level semantic information to all scales) such as PyramidBox achieve significant improvement on detection
+* However, these methods don't consider the current layers information
+* Different from the above, that ignore context relationship between anchors, they propose a feature enhancement module that incorporates multi-level dilated convolutional layers
