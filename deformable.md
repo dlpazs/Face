@@ -2,9 +2,29 @@
 - We can deform or occlude objects that we want to detect or classify within an image
 - It works by a normal convolution offset by some value
 - so a branch of the normal convolution is used to offset the original convolution
+
 ![alt text](https://miro.medium.com/max/1373/1*Mi6LqBIa8a4Ewo9DywHuzw.png)
+- The grid is deformable in that each grid point is moved by a learnable offset. The convolution operates on these moved grid points. 
+- Regular convolution is operated on a regular grid. 
+- Deformable convolution is operated on a regular grid but with each points augmented be a learnable offset 
+
+![alt text](https://cdn-images-1.medium.com/max/2600/1*06YpE_aFVQivZ5ACgv1qHA.png)
 - the deformable convolution picks values at different locations to do convolutions conditioned on the input (input image or feature map)
--
+- compared with atrous (dilated/hole) convolution which has a larger but **fixed** dilation value during convolution, while deformable conv, different dilation values are applied to each point in the grid during conv. 
+- compared with Spatial transformer network which performs transform on input image/feature maps deformable conv can be treated as light-weight STN.
+
+### Detour
+- [STN](https://towardsdatascience.com/review-stn-spatial-transformer-network-image-classification-d3cbd98a70aa)
+- STN by deepmind, helps crop out and scale normalizes appropriate region which simplifies classification task. 
+- Spatial transformation such as affine transformation and homography registration in DL its learning-based spatial transformation, transformation applied conditioned on input/feature map highly related to deformable conv nets
+#### Spatial Transformation Matrices
+- There are 3 main transformations learned by STN 
+- 1.1 Affine Transformation : 
+![alt text](https://cdn-images-1.medium.com/max/1200/0*HSmVuVGX7XLv-nol.png)
+- Depending on the values in the matrix, we can transform (X1, Y1) to (X2, Y2) by:
+![alt text](https://cdn-images-1.medium.com/max/1200/0*eUmX_xK2ixt4Lq4_.png)
+
+
 
 [Different types of convolutions](https://towardsdatascience.com/types-of-convolutions-in-deep-learning-717013397f4d)
 - Atrous (dilated convolutions) : a space between values in a kernel which creates a wider field of view
