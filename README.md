@@ -5,7 +5,7 @@ Face Detection, Face Alignment, Landmark detection, Face Recognition
 
 ## Facial Recognition
 
-Facial recognition is the task of making a **positive identification* of a face in a photo or video image against a pre-**existing database of faces**. It begins with **detection** - distinguishing human faces from other objects in the image - and then works on **identification** of those detected faces.
+```Facial recognition is the task of making a **positive identification* of a face in a photo or video image against a pre-**existing database of faces**. It begins with **detection** - distinguishing human faces from other objects in the image - and then works on **identification** of those detected faces.```
 
 
 #### RMDL (Olivetti Faces 5 images) [paper](https://arxiv.org/pdf/1805.01890v2.pdf), [code](https://github.com/kk7nc/RMDL)
