@@ -5,7 +5,7 @@ Face Detection, Face Alignment, Landmark detection, Face Recognition
 
 ## Facial Recognition
 
-```Facial recognition is the task of making a **positive identification* of a face in a photo or video image against a pre-**existing database of faces**. It begins with **detection** - distinguishing human faces from other objects in the image - and then works on **identification** of those detected faces.```
+Facial recognition is the task of making a **positive identification* of a face in a photo or video image against a pre-**existing database of faces**. It begins with **detection** - distinguishing human faces from other objects in the image - and then works on **identification** of those detected faces.
 
 
 #### RMDL (Olivetti Faces 5 images) [paper](https://arxiv.org/pdf/1805.01890v2.pdf), [code](https://github.com/kk7nc/RMDL)
@@ -27,7 +27,7 @@ To learn a compact representation of image sets for template-based face recognit
 
 ## Face Detection
 
-Face detection is the task of detecting faces in a photo or video (and distinguishing them from other objects).
+Face detection is the task of **detecting faces** in a photo or video (and distinguishing them **from other objects**).
 
 #### RetinaFace (WIDER Face Hard) [paper](https://arxiv.org/pdf/1905.00641v2.pdf), [code](https://github.com/deepinsight/insightface)
 
@@ -57,7 +57,7 @@ Propose a Feature Enhance Module (FEM) for enhancing original feature maps to ex
 
 ## Face Verification
 
-Face verification is the task of comparing a candidate face to another, and verifying whether it is a match. It is a one-to-one mapping: you have to check if this person is the correct one.
+Face verification is the task of **comparing a candidate face to another, and verifying whether it is a match**. It is a one-to-one mapping: you have to check if this person is the correct one.
 
 #### Dual-Agent GANs (IJB-A) [paper](http://papers.nips.cc/paper/6612-dual-agent-gans-for-photorealistic-and-identity-preserving-profile-face-synthesis.pdf) 
 
@@ -91,7 +91,7 @@ Efficient CNN models, MobileFaceNets, less than 1 million parameters tailored fo
 
 ## Face Alignment
 
-Face alignment is the task of identifying the geometric structure of faces in digital images, and attempting to obtain a canonical alignment of the face based on translation, scale, and rotation.
+Face alignment is the task of **identifying the geometric structure of faces** in digital images, and attempting to obtain a canonical alignment of the face based on translation, scale, and rotation.
 
 #### DenseU-Net + Dual Transformer [paper](https://arxiv.org/pdf/1812.01936v1.pdf) [code](https://github.com/deepinsight/insightface) [code inx](https://github.com/deepinx/sdu-face-alignment) 
 
@@ -121,7 +121,7 @@ is designed to reconstruct the original input face.
 
 ## Face Identification
 
-Face identification is the task of matching a given face image to one in an existing database of faces. It is the second part of face recognition (the first part being detection). It is a one-to-many mapping: you have to find an unknown person in a database to find who that person is.
+Face identification is the task of **matching a given face image to one in an existing database of faces**. It is the second part of face recognition (the first part being detection). It is a one-to-many mapping: you have to find an unknown person in a database to find who that person is.
 
 #### ArcFace (SOTA MegaFace)
 
