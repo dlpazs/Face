@@ -99,20 +99,35 @@ Current SOTA on images captured in wild revolve around hourglass & U-Nets. They 
 
 Robust face alignment method. DAN has multiple stages, where each stage improves locations of facial landmarks estimated by previous stage. It uses entire face images at all stages, contrary to local patches that are popular. Possible due to landmark heatmaps, which provide visual information about landmark locations estimated at previous stages. Using entire face images allows DAN to handle large variation in head pose and difficult initializations. DAN reduces SOTA failure rate by up to 70%. 
 
-- Joint 3D Face Reconstruction and Dense Face alignment from A single image with 2D-Assisted self-supervised learning [paper](https://arxiv.org/pdf/1903.09359v1.pdf)[code](https://github.com/XgTu/2DASL)
+- Joint 3D Face Reconstruction and Dense Face alignment from A single image with 2D-Assisted self-supervised learning  (AFLW2000-3D/AFLW-LFPA) [paper](https://arxiv.org/pdf/1903.09359v1.pdf)[code](https://github.com/XgTu/2DASL)
 
-[paper]()[code]()
-[paper]()[code]()
-[paper]()[code]()
+3D face reconstruction from a single 2D image is challenging with broad applications. Recent methods aim to learn a CNN-based 3D face model that regresses coefficients of 3D Morphable Model (3DMM) from 2D images to render 3D face reconstruction or dense face alignment. The shortage of training data with 3D annotations limits performance of those methods. To mitigate, they propose 2D-assisted self-supervise learning (2DASL) method that can use "in-the-wild" 2D face images with noisy landmark information to improve 3D face model learning. Taking sparse 2D facial landmarks as added info, 2DASL introduces four novel self-supervision schemes that view 2D landmark and 3D landmark prediction as a self-mapping process, including 2D and 3D landmark self-prediction consistency, cycle-consistency over 2D landmark prediction and self-critic over the predicted 3DMM coefficients based on landmark predictions. Mitigating demand for 2D-to-3D annotations without 3D annotations. 
+
+- AWing (COFW) [paper](https://arxiv.org/pdf/1904.07399v1.pdf)
+
+Heatmap regression has become a mainstream approach to localize facial landmarks. CNN & RNN popular in solving comp vision tasks. The loss function for heatmap regression is rarely studied. Propose novel Adaptive Wing Loss that can adapt its shape to different types of ground truth heatmap pixels. Decreasing the loss to 0 on foreground pixels while leaving loss on background pixels. To address fore-back-ground imbalance of pixels, they also propose Weighted Loss Map, which assigns high weights on foreground and difficult background pixels to help training process focus more on pixels that are crucial to landmark localization. To further improve alignment accuracy, they introduce boundary prediction and CoordConv with boundary coordinates. 
+
+- Nonlinear 3D Face Morphable Model (AFLW2000) [paper](https://arxiv.org/pdf/1804.03786v3.pdf)[code](https://github.com/tranluan/Nonlinear_Face_3DMM)
+
+As a classic statistical model of 3D facial shape and texture, 3D Morphable Model (3DMM) is widely used in facial
+analysis, e.g., model fitting, image synthesis. Conventional 3DMM is learned from a set of well-controlled 2D face images with associated 3D face scans, and represented by two sets of PCA basis functions. Innovative framework to
+learn a nonlinear 3DMM model from a large set of unconstrained face images, without collecting 3D face scans. Specifically, given a face image as input, a network encoder estimates the projection, shape and texture parameters. Two
+decoders serve as the nonlinear 3DMM to map from the shape and texture parameters to the 3D shape and texture, respectively. With the projection parameter, 3D shape, and texture, a novel analytically-differentiable rendering layer
+is designed to reconstruct the original input face. 
+
+- Dense U-Net (IBUG) [paper](https://arxiv.org/pdf/1812.01936v1.pdf)[code](https://github.com/deepinsight/insightface) [code](https://github.com/deepinx/deep-face-alignment)
 
 ## Face Identification
 
 Face identification is the task of matching a given face image to one in an existing database of faces. It is the second part of face recognition (the first part being detection). It is a one-to-many mapping: you have to find an unknown person in a database to find who that person is.
 
 - ArcFace (SOTA MegaFace)
+
 - Deep Residual Equivarient Mapping, DREAM (SOTA IBJ-A) [paper](https://arxiv.org/pdf/1803.00839v1.pdf)[code](https://github.com/penincillin/DREAM)
 
 Many models are poor on profile faces. A key reason is imbalance of training data of frontal vs profile. Moreover, it is hard to learn representation that is geometrically invariant to large pose variations. They hypothesize that there is inherent mapping between frontal and profile faces, and thus a discrepancy in the deep representation space can be bridged by equivariant mapping. DREAM is capable of adaptively adding residuals to the input deep representation to transform profile representation to a canonical pose that simplifies recognition. It improves profile recognition without augmentation, it is light-weight and easily implemented without computational overhead.
+
+- FacePoseNet (IJB-B)
 
 ## Ideas
 
