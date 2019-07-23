@@ -182,6 +182,10 @@ Containerization (Docker)
 
 - pipenv lock --requirements --keep-outdates which creates a requirements.txt file
 
+[starlette](https://github.com/encode/starlette)
+- ASGI (Asynchronous Server Gateway Interface) is a spiritual successor to WSGI, intended to provide a standard interface between async-capable Python web servers, frameworks, and applications.
+- with a WSGI backwards-compatibility implementation and multiple servers and application frameworks.
+
 ### Considerations
 
 - Recognition Rate - relies on list of gallery images (one per identity) and a list of probe images of the same identities. For each
