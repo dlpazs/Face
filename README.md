@@ -1,5 +1,5 @@
 # Face
-Face Detection, Face Alignment, Landmark detection, Face Recognition
+A compilation of notes from prominent recent research into Face Detection, Face Alignment, Landmark detection, Face Recognition. This is intended to help condense some of the literature and problems within this area.
 
 ********************************************************
 
